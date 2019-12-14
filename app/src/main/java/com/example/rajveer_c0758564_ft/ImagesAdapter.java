@@ -41,11 +41,12 @@ class ImagesAdapter extends ArrayAdapter<Information> {
         ImageView imageView = convertView.findViewById(R.id.myimage_view);
         TextView name = convertView.findViewById(R.id.name);
         TextView email = convertView.findViewById(R.id.Email);
+        TextView phone_no = convertView.findViewById(R.id.phone_no);
         //   convertView = data.getMyName;
         //   convertView = data.getMyEmail;
         //   convertView = data.getMyPhone;
 
-        TextView phone_no = convertView.findViewById(R.id.phone_no);
+
         imageView.setImageResource(imageIcons[position]);
          name.setText(data.getMyName());
          email.setText(data.getMyEmail());

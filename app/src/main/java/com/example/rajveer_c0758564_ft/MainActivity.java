@@ -29,15 +29,6 @@ public class MainActivity extends AppCompatActivity {
         addUserBtn = findViewById(R.id.Add_user_btn);
         listview = findViewById(R.id.listVIEW);
 
-
-
-        addUserBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,RecevActivity.class);
-                startActivity(i);
-            }
-        });
         final ImagesAdapter imagesAdapter = new ImagesAdapter(this,images,counts);
         listview.setAdapter(imagesAdapter);
 
@@ -49,7 +40,21 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this,RecordActivity.class);
                 String my_string = String.valueOf(position);
-                intent.putExtra("position",my_string);
+                intent.putExtra("index",my_string);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
+        addUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,RecevActivity.class);
                 startActivity(intent);
             }
         });

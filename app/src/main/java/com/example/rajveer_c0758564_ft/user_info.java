@@ -19,6 +19,60 @@ import java.util.ArrayList;
 public class user_info extends AppCompatActivity {
     ArrayList<Integer> verified = new ArrayList<Integer>();
     ArrayList<Integer> notVerified = new ArrayList<Integer>();
+
+        CheckBox checkbox;
+        Button verify_button;
+
+        @Override
+        protected void onCreate (Bundle savedInstanceState){
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_user_info);
+            checkbox = findViewById(R.id.checkBox2);
+            verify_button = findViewById(R.id.verify_button);
+
+
+
+            verify_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(verified.size() < 4  || !notVerified.isEmpty() || !checkbox.isChecked() ) {
+
+
+                        new AlertDialog.Builder(user_info.this).setTitle(" Not Verify").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                    }
+                    else if (verified.size() == 4 && notVerified.isEmpty() && checkbox.isChecked())  {
+                        new AlertDialog.Builder(user_info.this).setTitle("Verify").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent1 = getIntent();
+                                String name = intent1.getExtras().getString("Name");
+                                String email = intent1.getExtras().getString("Email");
+                                String phone_no = intent1.getExtras().getString("Phone_no");
+
+                                Toast.makeText(user_info.this, name+email+phone_no, Toast.LENGTH_SHORT).show();
+                                Information.information.add(new Information(name,email,phone_no));
+                                Intent inte = new Intent(user_info.this,MainActivity.class);
+                                startActivity(inte);
+
+                            }
+                        }).show();
+
+
+                    }
+                }
+            });
+
+
+        }
+
+
+
     public void changeSource(View view) {
         ImageView imageView = (ImageView) view;
         imageView.setImageResource(R.drawable.checked);
@@ -30,7 +84,7 @@ public class user_info extends AppCompatActivity {
         ImageView imageView = (ImageView) view;
         imageView.setImageResource(R.drawable.checked);
         imageView.setBackgroundResource(R.drawable.img2);
-verified.add(2);
+        verified.add(2);
         imageView.animate().alpha(0.5f);
     }
     public void changeSource2(View view) {
@@ -90,62 +144,6 @@ verified.add(2);
         imageView.animate().alpha(0.5f);
     }
 
-        CheckBox checkbox;
-        Button verify;
-
-        @Override
-        protected void onCreate (Bundle savedInstanceState){
-
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_user_info);
-            checkbox = findViewById(R.id.checkBox2);
-            verify = findViewById(R.id.verify_button);
 
 
-
-            verify.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(verified.size() < 4  || !notVerified.isEmpty() || !checkbox.isChecked() ) {
-
-
-                        new AlertDialog.Builder(user_info.this).setTitle(" Not Verify").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).show();
-                    }
-                    else if (verified.size() == 4 && notVerified.isEmpty() && checkbox.isChecked())  {
-                        new AlertDialog.Builder(user_info.this).setTitle("Verify").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent1 = getIntent();
-                                String name = intent1.getExtras().getString("Name");
-                                String email = intent1.getExtras().getString("Email");
-                                String phone_no = intent1.getExtras().getString("Phone_no");
-
-                                Toast.makeText(user_info.this, name+email+phone_no, Toast.LENGTH_SHORT).show();
-                                Information.information.add(new Information(name,email,phone_no));
-                                Intent inte = new Intent(user_info.this,MainActivity.class);
-                                startActivity(inte);
-
-                            }
-                        }).show();
-
-
-                    }
-                }
-            });
-
-
-
-
-
-
-
-
-        }
-
-
-    }
+}

@@ -26,10 +26,25 @@ ArrayList<Information> my_record = Information.information;
         phone = findViewById(R.id.phone_tv);
 
         Intent this_intent = getIntent();
-        int position = Integer.parseInt(this_intent.getExtras().getString("position"));
-        Information info = my_record.get(position);
-        image.setImageResource(faces[position]);
+        int r = Integer.parseInt(this_intent.getExtras().getString("index"));
+        Information info = my_record.get(r);
+
+//         //   convertView = data.getMyName;
+//        //   convertView = data.getMyEmail;
+//        //   convertView = data.getMyPhone;
+//
+//
+//        imageView.setImageResource(imageIcons[position]);
+//         name.setText(data.getMyName());
+//         email.setText(data.getMyEmail());
+//         phone_no.setText(data.getMyPhone());
+//        return convertView;
+
+
+
+        image.setImageResource(faces[r]);
         name.setText(info.getMyName());
+
         email.setText(info.getMyEmail());
         phone.setText(info.getMyPhone());
     }
